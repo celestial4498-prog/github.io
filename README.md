@@ -21,54 +21,42 @@
 
 Celestial is a **modular universe engine** written in Rust.
 
-It's a collection of **27 independent crates** — each one represents a real celestial body or system. Stars, black holes, planets, moons, solar systems, galaxies. Every single one of them is a self-contained, reusable building block.
+**27 independent crates** — stars, black holes, planets, moons, solar systems, galaxies — each one a self-contained building block. You pick the pieces you need, you assemble them, and you get a universe. Your universe. At whatever scale you want.
 
-The idea is simple: you pick the pieces you need, you assemble them, and you get a universe. Your universe. With whatever rules you want, at whatever scale you want.
-
-Everything under the hood is grounded in real scientific constants and real physics — but that's the foundation, not the point. The point is **what you build on top of it**.
-
-> All scientific constants come from [sciforge](https://crates.io/crates/sciforge) and verified astrophysical sources. If you're interested in the pure science side, sciforge already handles that. Celestial is about turning those numbers into worlds.
+Everything is grounded in real scientific constants from [sciforge](https://crates.io/crates/sciforge) and verified astrophysical sources. The science makes the output believable. What you do with it is up to you.
 
 ---
 
-## Why?
-
-Because there's no good way to generate coherent, physically-grounded universes today — not for games, not for film, not for AI, not for anything.
-
-Celestial exists to change that.
+## What it's for
 
 ### 🎮 Games
 
-Procedural generation that doesn't feel random. A planet with rings should have Roche limit physics. A moon orbiting a gas giant should experience tidal heating. A star system should have stable orbits, not just dots placed on a skybox.
+Procedural generation that doesn't feel random. A planet with rings has Roche limit physics. A moon orbiting a gas giant experiences tidal heating. A star system has stable orbits — not dots placed on a skybox.
 
-Celestial gives you all of that as composable Rust crates. Drop them into your game engine, your ECS, your server — wherever you need them.
+27 composable Rust crates. Drop them into your game engine, your ECS, your server — wherever you need them.
 
 ### 🎬 Audiovisual & VFX
 
-Need a scientifically coherent solar system for a film? A black hole that actually warps light correctly? A planet with a real atmosphere model that renders properly?
+Every crate ships with a `rendering` module — PBR materials, atmosphere parameters, surface textures, lighting models. A black hole that warps light correctly. A planet with a real atmosphere model. A solar system that moves.
 
-Each crate already ships with a `rendering` module — PBR materials, atmosphere parameters, surface textures, lighting models. These are designed to plug into real rendering pipelines.
+Designed to plug into real rendering pipelines.
 
-### 🤖 AI Endpoints
+### 🤖 AI & Data Endpoints
 
-Train your models on coherent planetary data. Generate millions of unique but physically consistent star systems. Provide structured, typed Rust data that serializes cleanly for ML pipelines.
+Every body exposes its full state as structured, typed data — orbital elements, surface conditions, atmospheric composition, thermal environment. Feed parameters, get back coherent star systems. Generate millions of unique, physically consistent worlds for training sets.
 
-Every single body exposes its full state as structured data — orbital elements, surface conditions, atmospheric composition, thermal environment. Everything is computable, everything is queryable.
+### 🖥️ Real-time Engines
 
-### 🎮 Unreal-like Real-time Engines
-
-Celestial is built for performance. Rust, zero-copy where possible, symplectic integrators that conserve energy over millions of timesteps. The N-body engine in `solarsystems` runs 21 bodies with sub-second performance.
-
-The long-term goal: compile to WASM, run in the browser, or link directly as a native plugin for Unreal, Bevy, or any engine that speaks C/Rust FFI.
+Rust performance. Zero-copy where possible. Symplectic integrators that conserve energy over millions of timesteps. WASM target for browser. Native plugins for Unreal, Bevy, Godot — any engine that speaks C/Rust FFI.
 
 ---
 
-## What's Inside
+## What's inside
 
 ### ☀️ Stars
 | Crate | What it is |
 |-------|-----------|
-| **suns** | The Sun — full stellar model, layers, activity cycles, wind |
+| **suns** | The Sun — full stellar model, layers, activity cycles, solar wind |
 | **starsfactory** | Procedural star generator — any spectral type, any size, on-demand |
 
 ### 🕳️ Black Holes
@@ -78,7 +66,8 @@ The long-term goal: compile to WASM, run in the browser, or link directly as a n
 | **sagittariusas** | Sagittarius A* — the Milky Way's central supermassive black hole |
 
 ### 🪐 Planets
-8 planets, each with 11 modules: atmosphere, geology, terrain, physics, rendering, and more.
+
+8 planets, each with up to 11 modules — atmosphere, geology, terrain, physics, rendering, and more.
 
 | Crate | Body |
 |-------|------|
@@ -87,12 +76,13 @@ The long-term goal: compile to WASM, run in the browser, or link directly as a n
 | **earths** | Earth — the reference planet |
 | **marss** | Mars |
 | **jupiters** | Jupiter |
-| **saturns** | Saturn — 307 tests, 10 modules |
+| **saturns** | Saturn |
 | **uranuss** | Uranus |
 | **neptunes** | Neptune |
 
-### 🌙 Satellites
-12 moons, each with 13-14 modules. Every one simulates its parent planet interaction.
+### 🌙 Moons
+
+12 moons across 4 planetary systems, each with 13-14 modules.
 
 | Crate | Parent |
 |-------|--------|
@@ -106,22 +96,21 @@ The long-term goal: compile to WASM, run in the browser, or link directly as a n
 ### 🌌 Systems
 | Crate | What it is |
 |-------|-----------|
-| **solarsystems** | N-body orchestrator — 21 bodies, symplectic integrators, orbital mechanics, event detection |
-| **milkyway** | Galaxy-scale simulation — spiral dynamics, stellar populations, dark matter halos. *In development.* |
+| **solarsystems** | N-body engine — 21 bodies, symplectic integrators, orbital mechanics, event detection |
+| **milkyway** | Galaxy-scale — spiral dynamics, stellar populations, dark matter halos |
 
 ---
 
-## The Bigger Picture
+## Where it goes
 
-Right now, each crate models a single body. But the end goal is **universe generation**.
+The end goal is **universe generation at scale**.
 
-Imagine this:
-- You call an API and get back a complete, unique star system — with a star, 3-8 planets, moons, orbital dynamics, all consistent
-- You feed parameters ("red dwarf, 2 rocky planets, 1 gas giant with rings") and get back a full simulation
-- You run it in real-time in your game, or as a batch job for your dataset, or as a microservice behind an API
-- You create 10,000 of them, each different, each coherent, each explorable
+- Call an API, get back a complete star system — star, planets, moons, orbital dynamics, all consistent
+- Feed parameters — "red dwarf, 2 rocky planets, 1 gas giant with rings" — get back a full universe
+- Run it in real-time in your game, or batch-generate 10,000 unique systems for your dataset
+- Export to WASM for the browser, compile as a native plugin for any engine, serve it behind an API
 
-That's where this is going. Every crate that exists today is a building block for that future.
+Every crate that exists today is a building block for that.
 
 ---
 
@@ -130,10 +119,10 @@ That's where this is going. Every crate that exists today is a building block fo
 ```
 celestialsbodies/
 ├── stars/
-│   ├── Suns/           — The Sun
-│   └── StarsFactory/   — Star generator
+│   ├── Suns/               — The Sun
+│   └── StarsFactory/       — Procedural star generator
 ├── blackholes/
-│   ├── BlackHolesFactory/  — BH engine
+│   ├── BlackHolesFactory/  — Black hole engine
 │   └── SagittariusA*s/     — Milky Way SMBH
 ├── planets/
 │   ├── Mercurys/  Venuss/  Earths/  Marss/
@@ -144,82 +133,54 @@ celestialsbodies/
 │   ├── Titanss/  Enceladuss/
 │   └── Titanias/  Oberons/  Tritons/
 └── Systems/
-    └── SolarSystems/   — N-body orchestrator
+    └── SolarSystems/       — N-body orchestrator
 ```
 
-Every crate has the same structure:
+Every crate follows the same modular structure:
+
 ```
 src/
 ├── lib.rs          — constants + module declarations
 ├── main.rs         — simulation binary
-├── atmosphere/     — gas model
-├── geology/        — internal structure
+├── atmosphere/     — gas model, layers, weather
+├── geology/        — internal structure, tectonics
 ├── physics/        — orbital & rotational mechanics
 ├── terrain/        — heightmaps, biomes, texturing
 ├── rendering/      — PBR materials, visual data
-├── temporal/       — calendars, time management
+├── temporal/       — calendars, time systems
 └── ...             — 5-8 more domain modules
 ```
 
 ---
 
-## Quick Start
-
-```toml
-[dependencies]
-earths = "*"
-suns = "*"
-solarsystems = "*"
-```
-
-```rust
-use earths::*;
-use earths::physics::orbit::EarthOrbit;
-
-fn main() {
-    let orbit = EarthOrbit::new();
-    println!("Semi-major axis: {:.3e} m", orbit.semi_major_axis_m);
-}
-```
-
-Or run a full simulation:
-```bash
-cd planets/Earths && cargo run --release
-```
-
-Every crate has a binary that runs the complete simulation for that body — not a demo, a real multi-step physics pipeline validated against known data.
-
----
-
-## What's Coming
+## Roadmap
 
 - **Universe generator API** — assemble complete star systems from parameters
-- **WASM builds** — run simulations in the browser
-- **Rendering pipeline** — each crate already has PBR materials, next step is wgpu/Bevy integration
-- **MilkyWay completion** — galactic-scale dynamics
-- **Exoplanet templates** — generate non-solar bodies with the factory crates
+- **WASM builds** — run in the browser
+- **Rendering pipeline** — wgpu/Bevy integration with existing PBR materials
+- **AI endpoints** — structured data export for ML pipelines
 - **Native engine plugins** — C FFI / Unreal / Bevy / Godot bindings
-- **Data export** — HDF5, Arrow, FITS for researchers and ML pipelines
-- **SolarSystems publication** — finishing the last 5 planet integrations
+- **MilkyWay** — galactic-scale dynamics
+- **Exoplanet templates** — procedural non-solar bodies via factory crates
+- **Data export** — HDF5, Arrow, FITS
 
 ---
 
-## About the Science
+## About the science
 
-Every value in this project traces back to a real constant — IAU standards, NASA data, published astrophysical parameters. The foundation crate [sciforge](https://crates.io/crates/sciforge) provides the physical constants and mathematical framework.
+Every value traces back to a real constant — IAU standards, NASA data, published astrophysical parameters. The foundation crate [sciforge](https://crates.io/crates/sciforge) provides the physical constants and mathematical framework.
 
-But let's be clear: **Celestial is not a scientific research tool**. It's an engine. The science is there to make the output *believable* and *coherent*, not to produce publishable papers. If you need the raw science, sciforge is the right place. Celestial takes those numbers and turns them into usable, composable, renderable worlds.
+**Celestial is not a scientific research tool.** It's an engine. The science is there to make the output believable and coherent — not to produce papers. If you want the raw science, sciforge is the right place. Celestial takes those numbers and turns them into worlds.
 
 ---
 
 ## Contributing
 
-I've built this alone so far. I'm open to contributions, but I'm particular about quality.
+Built solo so far. Open to contributions, but particular about quality.
 
-If you want to contribute:
 - Open a discussion or issue first
 - Show you understand the structure
-- Don't send surprise PRs — let's talk before you write code
+- No surprise PRs — let's talk before you write code
 
 ---
 
