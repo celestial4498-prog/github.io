@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celestial — Modular Universe Engine in Rust</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.147.0/examples/js/renderers/CSS2DRenderer.js"></script>
+</head>
+<body>
+    <canvas id="starfield"></canvas>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon">✦</div>
+            <span>Celestial</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="pages/stars.html">Stars</a></li>
+            <li><a href="pages/blackholes.html">Black Holes</a></li>
+            <li><a href="pages/planets.html">Planets</a></li>
+            <li><a href="pages/satellites.html">Satellites</a></li>
+            <li><a href="pages/dwarfplanets.html">Dwarf Planets</a></li>
+            <li><a href="pages/asteroids.html">Asteroids</a></li>
+            <li><a href="pages/comets.html">Comets</a></li>
+            <li><a href="pages/systems.html">Systems</a></li>
+            <li><a href="pages/galaxies.html">Galaxies</a></li>
+            <li><a href="pages/comments.html" class="btn btn-ghost" style="padding:0.4rem 1rem; font-size:0.8rem;">💬 Comments</a></li>
+        </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero hero-3d">
+        <div id="solar-system-container" class="solar-system-container"></div>
+        <div class="hero-overlay hero-overlay-3d"></div>
+    </header>
+
+    <!-- STATS -->
+    <div class="container">
+        <div class="stats-bar reveal">
+            <div class="stat-item">
+                <div class="stat-value" data-count="32" style="color: var(--accent-glow)">0</div>
+                <div class="stat-label">Crates</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" style="color: var(--star-color)">100%</div>
+                <div class="stat-label">Rust</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" data-count="36" style="color: var(--planet-color)">0</div>
+                <div class="stat-label">Celestial Bodies</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value" style="color: var(--system-color)">N-body</div>
+                <div class="stat-label">Real-time Engine</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CATEGORY CARDS -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal" style="text-align:center; max-width:100%;">
+                <h2>🌌 Explore the Universe</h2>
+                <p style="margin: 0 auto;">Each category is a modular building block. Click to explore the crates inside.</p>
+            </div>
+            <div class="category-grid reveal">
+                <a href="pages/stars.html" class="category-tile" style="--tile-color: var(--star-color);">
+                    <span class="category-emoji">⭐</span>
+                    <h3>Stars</h3>
+                    <span class="category-count">2 crates</span>
+                </a>
+                <a href="pages/blackholes.html" class="category-tile" style="--tile-color: var(--blackhole-color);">
+                    <span class="category-emoji">🕳️</span>
+                    <h3>Black Holes</h3>
+                    <span class="category-count">2 crates</span>
+                </a>
+                <a href="pages/planets.html" class="category-tile" style="--tile-color: var(--planet-color);">
+                    <span class="category-emoji">🪐</span>
+                    <h3>Planets</h3>
+                    <span class="category-count">9 crates</span>
+                </a>
+                <a href="pages/satellites.html" class="category-tile" style="--tile-color: var(--satellite-color);">
+                    <span class="category-emoji">🌙</span>
+                    <h3>Satellites</h3>
+                    <span class="category-count">13 crates</span>
+                </a>
+                <a href="pages/dwarfplanets.html" class="category-tile" style="--tile-color: var(--accent-glow);">
+                    <span class="category-emoji">🔮</span>
+                    <h3>Dwarf Planets</h3>
+                    <span class="category-count">1 crate</span>
+                </a>
+                <a href="pages/asteroids.html" class="category-tile" style="--tile-color: #ffb142;">
+                    <span class="category-emoji">☄️</span>
+                    <h3>Asteroids</h3>
+                    <span class="category-count">1 crate</span>
+                </a>
+                <a href="pages/comets.html" class="category-tile" style="--tile-color: #74b9ff;">
+                    <span class="category-emoji">💫</span>
+                    <h3>Comets</h3>
+                    <span class="category-count">1 crate</span>
+                </a>
+                <a href="pages/systems.html" class="category-tile" style="--tile-color: var(--system-color);">
+                    <span class="category-emoji">🔭</span>
+                    <h3>Systems</h3>
+                    <span class="category-count">2 crates</span>
+                </a>
+                <a href="pages/galaxies.html" class="category-tile" style="--tile-color: var(--accent-glow);">
+                    <span class="category-emoji">🌀</span>
+                    <h3>Galaxies</h3>
+                    <span class="category-count">1 crate</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header reveal" style="text-align:center; max-width:100%;">
+                <h2>🎯 Build Anything</h2>
+                <p style="margin: 0 auto;">Every crate is a composable building block. Pick what you need, assemble a universe.</p>
+            </div>
+            <div class="features-row reveal" style="margin-top:2rem;">
+                <div class="feature-card">
+                    <div class="feature-icon">🎮</div>
+                    <h3>Games</h3>
+                    <p>Procedural generation that feels real. Planets with actual atmospheres, moons with tidal physics, star systems with stable orbits.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎬</div>
+                    <h3>Film & VFX</h3>
+                    <p>Every crate ships with PBR materials, atmosphere parameters, and lighting models ready for rendering pipelines.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI & Data</h3>
+                    <p>Generate millions of unique star systems as structured data. Everything is typed, serializable, and queryable.</p>
+                </div>
+            </div>
+            <div class="features-row reveal" style="margin-top:1rem;">
+                <div class="feature-card">
+                    <div class="feature-icon">🖥️</div>
+                    <h3>Real-time Engines</h3>
+                    <p>Rust performance, zero-copy, N-body at sub-second. WASM target planned. Bevy, Unreal, Godot — your choice.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3>Modular</h3>
+                    <p>32 independent crates. Use just one planet, or wire up an entire solar system. No monolith, no lock-in.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔬</div>
+                    <h3>Grounded in Reality</h3>
+                    <p>Every value comes from real constants via <code>sciforge</code>. The output looks and behaves right because the math is right.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>Built with 🦀 Rust &mdash; an open-source universe engine by <strong>Rayan Morel</strong></p>
+            <div class="footer-links">
+                <a href="https://github.com/celestial4498-prog">GitHub</a>
+                <span>MIT License</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="wasm-pkg/celestial_wasm_demo.js"></script>
+    <script src="js/solar-system-3d.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var container = document.getElementById('solar-system-container');
+            if (container && typeof wasm_bindgen !== 'undefined') {
+                wasm_bindgen('wasm-pkg/celestial_wasm_demo_bg.wasm').then(function() {
+                    initSolarSystem3D(container);
+                }).catch(function(err) {
+                    console.error('WASM init failed:', err);
+                    container.innerHTML = '<p style="color:#fff;text-align:center;padding:2rem;">WASM loading failed. Use a local HTTP server (e.g. python3 -m http.server).</p>';
+                });
+            }
+        });
+    </script>
+</body>
+</html>

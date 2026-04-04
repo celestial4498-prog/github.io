@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comments — Celestial Bodies</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="comments">
+    <canvas id="starfield"></canvas>
+
+    <nav class="navbar">
+        <a href="../index.html" class="nav-logo">
+            <div class="logo-icon">✦</div>
+            <span>Celestial Bodies</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="stars.html">Stars</a></li>
+            <li><a href="blackholes.html">Black Holes</a></li>
+            <li><a href="planets.html">Planets</a></li>
+            <li><a href="satellites.html">Satellites</a></li>
+            <li><a href="dwarfplanets.html">Dwarf Planets</a></li>
+            <li><a href="asteroids.html">Asteroids</a></li>
+            <li><a href="comets.html">Comets</a></li>
+            <li><a href="systems.html">Systems</a></li>
+            <li><a href="galaxies.html">Galaxies</a></li>
+            <li><a href="comments.html" class="btn btn-ghost active" style="padding:0.4rem 1rem; font-size:0.8rem;">💬 Comments</a></li>
+        </ul>
+    </nav>
+
+    <section class="section category-hero">
+        <div class="container">
+            <div class="section-header" style="text-align:center; max-width:100%;">
+                <h2>💬 Comments</h2>
+                <p>Share feedback, ideas, or questions about Celestial Bodies.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" style="max-width: 720px;">
+
+            <!-- Comment form -->
+            <form id="comment-form" class="comment-form">
+                <div class="form-group">
+                    <label for="comment-name">Name</label>
+                    <input type="text" id="comment-name" placeholder="Your name" required autocomplete="off" maxlength="80">
+                </div>
+                <div class="form-group">
+                    <label for="comment-text">Message</label>
+                    <textarea id="comment-text" rows="4" placeholder="Write your comment…" required maxlength="2000"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Post Comment</button>
+            </form>
+
+            <!-- Comments list -->
+            <div id="comments-list" class="comments-list">
+                <p class="comment-empty">No comments yet — be the first!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Built with 🦀 Rust &mdash; an open-source universe engine by <strong>Rayan Morel</strong></p>
+            <div class="footer-links">
+                <a href="https://github.com/celestial4498-prog">GitHub</a>
+                <span>MIT License</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/app.js"></script>
+    <script src="../js/comments.js"></script>
+</body>
+</html>
