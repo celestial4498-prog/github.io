@@ -10,7 +10,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/language-Rust-orange?style=flat-square" />
-  <img src="https://img.shields.io/badge/crates-27-blueviolet?style=flat-square" />
+  <img src="https://img.shields.io/badge/crates-33-blueviolet?style=flat-square" />
   <img src="https://img.shields.io/badge/edition-2024-brightgreen?style=flat-square" />
   <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square" />
 </p>
